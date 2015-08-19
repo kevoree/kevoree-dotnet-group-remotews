@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kevoree-dotnet-group-remotews", "kevoree-dotnet-group-remotews.csproj", "{49A04B49-0202-49E3-AED5-78927E277697}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Annotation", "..\kevoree-dotnet-annotation\Annotation.csproj", "{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "..\kevoree-dotnet-core-api\Api.csproj", "{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49A04B49-0202-49E3-AED5-78927E277697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A04B49-0202-49E3-AED5-78927E277697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A04B49-0202-49E3-AED5-78927E277697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A04B49-0202-49E3-AED5-78927E277697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
