@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>org-kevoree-group-remotews</id>
+        <version>1.0.0</version>
+        <title>Kevoree.Net RemoteWSGroup</title>
+        <authors>Manuel Leduc</authors>
+        <owners>Kevoree</owners>
+        <licenseUrl>https://github.com/kevoree/kevoree-dotnet-group-remotews/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/kevoree/kevoree-dotnet-group-remotews</projectUrl>
+        <iconUrl>https://avatars3.githubusercontent.com/u/5556542?v=3&amp;amp;s=200</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Remote WS Group</description>
+        <summary>Remote WS Group</summary>
+        <releaseNotes>First version</releaseNotes>
+        <dependencies>
+            <dependency id="Org.Kevoree.Core.Model" version="5.2.7" />
+            <dependency id="org-kevoree-annotation" version="2.0.5" />
+            <dependency id="org-kevoree-api" version="1.2.0" />
+            <dependency id="org-kevoree-log" version="1.1.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\kevoree-dotnet-group-remotews.dll" target="lib\net45\kevoree-dotnet-group-remotews.dll" />
+    </files>
+</package>

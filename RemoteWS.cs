@@ -9,7 +9,8 @@ using System.Collections.Concurrent;
 namespace Org.Kevoree.Group
 {
 	[GroupType]
-	public class RemoteWS
+    [Serializable]
+	public class RemoteWS: MarshalByRefObject, DeployUnit
 	{
 		public RemoteWS ()
 		{

@@ -7,9 +7,8 @@ using System.Collections.Concurrent;
 using Org.Kevoree.Log;
 using Org.Kevoree.Core.Api.Protocol;
 using System.Collections.Generic;
-using org.kevoree.modeling.api.json;
 using org.kevoree.factory;
-using org.kevoree.modeling.api;
+using org.kevoree.pmodeling.api.json;
 using org.kevoree;
 using System.Text;
 
