@@ -13,13 +13,13 @@ using org.kevoree;
 using System.Text;
 
 
-namespace Org.Kevoree.Group
+namespace Org.Kevoree.Library
 {
 	public class RemoteWSConsummerThread
 	{
 		private BlockingCollection<string> queue;
 
-		private RemoteWS group;
+		private WSGroup group;
 
 		private Log.Log log = LogFactory.getLog (typeof(RemoteWSProducerThread).ToString (), Level.INFO);
 
@@ -27,7 +27,7 @@ namespace Org.Kevoree.Group
 
 		private JSONModelSerializer serializer = new JSONModelSerializer ();
 
-		public RemoteWSConsummerThread (RemoteWS group, BlockingCollection<string> queue)
+		public RemoteWSConsummerThread (WSGroup group, BlockingCollection<string> queue)
 		{
 			this.queue = queue;
 			this.group = group;

@@ -9,7 +9,7 @@ using System.Text;
 using Org.Kevoree.Log;
 
 
-namespace Org.Kevoree.Group
+namespace Org.Kevoree.Library
 {
 	public class RemoteWSProducerThread
 	{

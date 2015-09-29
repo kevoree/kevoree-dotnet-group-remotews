@@ -6,13 +6,13 @@ using System.Threading;
 using System.Collections.Concurrent;
 
 
-namespace Org.Kevoree.Group
+namespace Org.Kevoree.Library
 {
 	[GroupType]
     [Serializable]
-	public class RemoteWS: MarshalByRefObject, DeployUnit
+	public class WSGroup: MarshalByRefObject, DeployUnit
 	{
-		public RemoteWS ()
+		public WSGroup ()
 		{
 		}
 
