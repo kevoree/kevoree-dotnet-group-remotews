@@ -5,24 +5,25 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{49A04B49-0202-49E3-AED5-78927E277697}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Org.Kevoree.Group</RootNamespace>
-    <AssemblyName>kevoree-dotnet-group-remotews</AssemblyName>
+    <RootNamespace>Org.Kevoree.Library</RootNamespace>
+    <AssemblyName>Org.Kevoree.Library</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>..\..\..\Desktop\package_solution\WSGroup\1.0.2\plugin\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>..\..\..\Desktop\package_solution\WSGroup\1.0.2\plugin\Org.Kevoree.Library.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Desktop\package_solution\org-kevoree-group-remotews\1.0.2\plugin\</OutputPath>
+    <OutputPath>..\..\..\Desktop\package_solution\WSGroup\1.0.2\plugin\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -132,9 +133,14 @@
       <HintPath>packages\Org.Kevoree.Core.Model.5.2.7\lib\KevoreeModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="Log">
-      <HintPath>packages\org-kevoree-log.1.0.1\lib\net40\Log.dll</HintPath>
+    <Reference Include="websocket-sharp, Version=1.0.2.36589, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <HintPath>packages\WebSocketSharp.1.0.3-rc9\lib\websocket-sharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +148,7 @@
     <Compile Include="RemoteWS.cs" />
     <Compile Include="RemoteWSConsummerThread.cs" />
     <Compile Include="RemoteWSProducerThread.cs" />
+    <Compile Include="RemoteWSTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -158,5 +165,12 @@
       <Project>{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}</Project>
       <Name>Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\kevoree-dotnet-log\Log.csproj">
+      <Project>{7442ab80-01d8-4e1a-a1f1-3b6c4f18ae0d}</Project>
+      <Name>Log</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
 </Project>

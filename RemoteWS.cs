@@ -54,11 +54,14 @@ namespace Org.Kevoree.Library
 		public void Start ()
 		{
 			// TODO
+            Console.WriteLine("Start RemoteWS");
 			BlockingCollection<string> queue = new BlockingCollection<string>();
 			Thread producerThread = new Thread(new ThreadStart(new RemoteWSProducerThread(queue).Listen));
 			Thread consummerThread = new Thread(new ThreadStart(new RemoteWSConsummerThread(this,queue).Consume));
 			producerThread.Start ();
 			consummerThread.Start ();
+		    consummerThread.Join();
+		    producerThread.Join();
 		}
 
 		[Stop]
