@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "..\kevoree-dotnet-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "..\kevoree-dotnet-log\Log.csproj", "{7442AB80-01D8-4E1A-A1F1-3B6C4F18AE0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kevoree-dotnet-log-api", "..\kevoree-dotnet-log-api\kevoree-dotnet-log-api.csproj", "{5D6A3C3E-703A-4AF7-B8F2-8580F418AE50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7442AB80-01D8-4E1A-A1F1-3B6C4F18AE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7442AB80-01D8-4E1A-A1F1-3B6C4F18AE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7442AB80-01D8-4E1A-A1F1-3B6C4F18AE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6A3C3E-703A-4AF7-B8F2-8580F418AE50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6A3C3E-703A-4AF7-B8F2-8580F418AE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6A3C3E-703A-4AF7-B8F2-8580F418AE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6A3C3E-703A-4AF7-B8F2-8580F418AE50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

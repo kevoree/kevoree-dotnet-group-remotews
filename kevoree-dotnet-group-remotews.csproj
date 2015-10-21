@@ -166,6 +166,10 @@
       <Project>{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}</Project>
       <Name>Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\kevoree-dotnet-log-api\kevoree-dotnet-log-api.csproj">
+      <Project>{5d6a3c3e-703a-4af7-b8f2-8580f418ae50}</Project>
+      <Name>kevoree-dotnet-log-api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\kevoree-dotnet-log\Log.csproj">
       <Project>{7442ab80-01d8-4e1a-a1f1-3b6c4f18ae0d}</Project>
       <Name>Log</Name>

@@ -9,26 +9,26 @@ using org.kevoree.pmodeling.api.json;
 using Org.Kevoree.Core.Api.Protocol;
 using Org.Kevoree.Core.Marshalled;
 using Org.Kevoree.Log;
-using WebSocket = WebSocketSharp.WebSocket;
+using Org.Kevoree.Log.Api;
 
 namespace Org.Kevoree.Library
 {
     public class RemoteWSConsummerThread
     {
-        private readonly RemoteWSGroup group;
-        private readonly JSONModelLoader loader = new JSONModelLoader(new DefaultKevoreeFactory());
-        private readonly Log.Log log = LogFactory.getLog(typeof(RemoteWSProducerThread).ToString(), Level.INFO);
-        private readonly JSONModelSerializer serializer = new JSONModelSerializer();
+        private readonly RemoteWSGroup _group;
+        private readonly JSONModelLoader _loader = new JSONModelLoader(new DefaultKevoreeFactory());
+        private ILogger _logger;
         
 
-        public RemoteWSConsummerThread(RemoteWSGroup group)
+        public RemoteWSConsummerThread(RemoteWSGroup group, ILogger logger)
         {
-            this.group = group;
+            this._group = group;
+            this._logger = logger;
         }
 
         private string getInstanceName()
         {
-            return group.getContext().getInstanceName();
+            return _group.getContext().getInstanceName();
         }
 
         private void casePush(Protocol.PushMessage pushMessage)
@@ -36,50 +36,45 @@ namespace Org.Kevoree.Library
             var model = pushMessage.getModel();
             if (model != null && model.Length != 0)
             {
-                var models = loader.loadModelFromString(model);
+                var models = _loader.loadModelFromString(model);
                 if (models != null && model.Length > 0)
                 {
-                    group.getModelService().update(new ContainerRootMarshalled((ContainerRoot)models.get(0)), null);
+                    _group.getModelService().update(new ContainerRootMarshalled((ContainerRoot)models.get(0)), null);
                 }
                 else
                 {
-                    log.Warn(string.Format("\"{0}\" received model is empty, push aborted",
-                        group.getContext().getInstanceName()));
+                    _logger.Warn(string.Format("\"{0}\" received model is empty, push aborted",
+                        _group.getContext().getInstanceName()));
                 }
             }
             else
             {
-                log.Warn(string.Format("\"{0}\" push message does not contain a model, push aborted", getInstanceName()));
+                _logger.Warn(string.Format("\"{0}\" push message does not contain a model, push aborted", getInstanceName()));
             }
         }
 
         private async void send(string str)
         {
-            using (var ws = new WebSocket(this.group.getWSUrl()))
-            {
-                ws.Connect();
-                ws.Send(str);
-                ws.Close();
-            }
+            this._group.getWebsocket().Send(str);
         }
 
         private void casePull(Protocol.PullMessage pullMessage)
         {
-            if (group.AnswerPull())
+            if (_group.AnswerPull())
             {
-                log.Info(string.Format("\"{0}\" received a pull request", getInstanceName()));
+                _logger.Info(string.Format("\"{0}\" received a pull request", getInstanceName()));
                 try
                 {
-                    send(group.getModelService().getCurrentModel().getModel().serialize());
+                    send(_group.getModelService().getCurrentModel().getModel().serialize());
                 }
                 catch
                 {
-                    log.Warn(string.Format("\"{0}\" unable to serialize current model, pull aborted", getInstanceName()));
+                    _logger.Warn(string.Format("\"{0}\" unable to serialize current model, pull aborted", getInstanceName()));
                 }
             }
             else
             {
-                log.Warn(string.Format("\"{}\" received a pull request, but 'answerPull' mode is false",
+                _logger.Warn(string.Format("\"{}\" received a pull request, but 'answerPull' mode is false",
                     getInstanceName()));
             }
         }
@@ -87,7 +82,7 @@ namespace Org.Kevoree.Library
         private void caseDefault(string message)
         {
             var summary = GetMessageSummary(message);
-            log.Debug(string.Format("\"{0}\" unknown incoming message ({0})", getInstanceName(), summary));
+            _logger.Debug(string.Format("\"{0}\" unknown incoming message ({0})", getInstanceName(), summary));
         }
 
         private static string GetMessageSummary(string message)
@@ -106,33 +101,43 @@ namespace Org.Kevoree.Library
 
         public void Consume()
         {
-            foreach (var message in this.group.getQueue().GetConsumingEnumerable())
+            try
             {
-                try
+                foreach (var message in this._group.getQueue().GetConsumingEnumerable())
                 {
-                    log.Info("Message dequeued");
-                    var parsedMessage = Protocol.parse(message);
-                    var messageType = parsedMessage.getType();
-                    if (messageType == Protocol.PUSH_TYPE)
+                    try
                     {
-                        casePush((Protocol.PushMessage)parsedMessage);
+                        _logger.Info("Message dequeued");
+                        var parsedMessage = Protocol.parse(message);
+                        var messageType = parsedMessage.getType();
+                        if (messageType == Protocol.PUSH_TYPE)
+                        {
+                            casePush((Protocol.PushMessage) parsedMessage);
+                        }
+                        else if (messageType == Protocol.PULL_TYPE)
+                        {
+                            casePull((Protocol.PullMessage) parsedMessage);
+                        }
+                        else
+                        {
+                            caseDefault(message);
+                        }
                     }
-                    else if (messageType == Protocol.PULL_TYPE)
+                    catch
                     {
-                        casePull((Protocol.PullMessage)parsedMessage);
+                        var summary = GetMessageSummary(message);
+                        _logger.Warn(string.Format("\"{0}\" unable to process incoming message ({1})", getInstanceName(), summary));
                     }
-                    else
-                    {
-                        caseDefault(message);
-                    }
-                }
-                catch
-                {
-                    var summary = GetMessageSummary(message);
-                    log.Warn(string.Format("\"{0}\" unable to process incoming message ({1})", getInstanceName(),
-                        summary));
                 }
             }
+            catch (OperationCanceledException) { }
+            _logger.Debug("Consummer stopped");
+        }
+
+        internal void RequestStop()
+        {
+            _logger.Debug("Consummer stop requested");
+            this._group.getQueue().CompleteAdding();
         }
     }
 }

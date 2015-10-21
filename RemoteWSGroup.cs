@@ -1,10 +1,11 @@
 ﻿using System;
 using Org.Kevoree.Annotation;
-using System.Net.WebSockets;
 using Org.Kevoree.Core.Api;
 using System.Threading;
 using System.Collections.Concurrent;
 using System.Linq;
+using Org.Kevoree.Log.Api;
+using WebSocketSharp;
 
 
 namespace Org.Kevoree.Library
@@ -32,41 +33,57 @@ namespace Org.Kevoree.Library
         [Param(DefaultValue = "/")]
         private string path = "/test";
 
-        private readonly BlockingCollection<string> queue = new BlockingCollection<string>();
+        [KevoreeInject]
+        private ILogger logger;
 
-        string CleanupPath(string param)
-        {
-            return path.StartsWith("/") ? param.Substring(1) : param;
-        }
+        private readonly BlockingCollection<string> queue = new BlockingCollection<string>();
+        private RemoteWSProducerThread producerThread;
+        private RemoteWSConsummerThread consummerThread;
+        private WebSocket websocket;
 
         [Start]
         public void Start()
         {
-            if (path != null && path.Length > 0 && path.First() != '/')
+            logger.Warn("Start");
+
+            this.initWebSocket();
+            this.producerThread = new RemoteWSProducerThread(this, this.logger);
+            this.consummerThread = new RemoteWSConsummerThread(this, this.logger);
+
+            var pThread = new Thread(new ThreadStart(producerThread.Listen));
+            var cThread = new Thread(new ThreadStart(consummerThread.Consume));
+            pThread.Start();
+            cThread.Start();
+
+        }
+
+        private void initWebSocket()
+        {
+            if (this.websocket != null)
             {
-                this.path = '/' + this.path;
+                this.websocket.Close();
             }
-            Console.WriteLine("Start RemoteWS");
-            
-            var producerThread = new Thread(new ThreadStart(new RemoteWSProducerThread(this).Listen));
-            var consummerThread = new Thread(new ThreadStart(new RemoteWSConsummerThread(this).Consume));
-            producerThread.Start();
-            consummerThread.Start();
-            //consummerThread.Join();
-            //producerThread.Join();
-            //Console.WriteLine("Stop RemoteWS");
+
+            if (path != null && !path.StartsWith("/"))
+            {
+                path = '/' + path;
+            }
+            this.websocket = new WebSocket("ws://" + host + ":" + port + path);
+            this.websocket.Connect();
         }
 
         [Stop]
         public void Stop()
         {
-
+            producerThread.RequestStop();
+            consummerThread.RequestStop();
+            logger.Warn("Start");
         }
 
         [Update]
         public void Update()
         {
-            // TODO : in principle useless ! (websocket url can be statically derived from host/port/path).
+            this.initWebSocket();
         }
 
         public Context getContext()
@@ -84,18 +101,10 @@ namespace Org.Kevoree.Library
             return this.answerPull;
         }
 
-        internal string getWSUrl()
+        internal WebSocket getWebsocket()
         {
-            if (host == null)
-            {
-                host = "ws.kevoree.org";
-            }
 
-            if (path != null && !path.StartsWith("/"))
-            {
-                path = "/" + path;
-            }
-            return "ws://" + host + ":" + port + path;
+            return this.websocket;
         }
 
         internal BlockingCollection<string> getQueue()
