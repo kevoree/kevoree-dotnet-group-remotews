@@ -13,12 +13,13 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Desktop\package_solution\WSGroup\1.0.2\plugin\</OutputPath>
+    <OutputPath>..\..\..\Desktop\package_solution\RemoteWSGroup\5.2.10\plugin\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <DocumentationFile>..\..\..\Desktop\package_solution\WSGroup\1.0.2\plugin\Org.Kevoree.Library.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -145,7 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoteWS.cs" />
+    <Compile Include="RemoteWSGroup.cs" />
     <Compile Include="RemoteWSConsummerThread.cs" />
     <Compile Include="RemoteWSProducerThread.cs" />
     <Compile Include="RemoteWSTest.cs" />

@@ -13,7 +13,7 @@ namespace Org.Kevoree.Library
         [Test]
         public void runserver()
         {
-            var a = new WSGroup();
+            var a = new RemoteWSGroup();
             a.Start();
         }
     }
