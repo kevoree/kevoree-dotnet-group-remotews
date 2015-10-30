@@ -16,7 +16,7 @@ namespace Org.Kevoree.Library
     {
 
         [KevoreeInject]
-        private Context context;
+        private Context _context;
 
         [KevoreeInject]
         private ModelService modelService;
@@ -88,7 +88,7 @@ namespace Org.Kevoree.Library
 
         public Context getContext()
         {
-            return this.context;
+            return this._context;
         }
 
         public ModelService getModelService()

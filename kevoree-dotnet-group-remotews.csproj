@@ -30,6 +30,14 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Annotation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\org-kevoree-annotation.2.0.6\lib\net40\Annotation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Core.Api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\org-kevoree-api.1.3.0\lib\net40\Core.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.AWT.WinForms.dll</HintPath>
       <Private>True</Private>
@@ -130,6 +138,10 @@
       <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.Runtime.JNI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="kevoree-dotnet-log-api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Org.Kevoree.Log.Api.1.0.0\lib\net40\kevoree-dotnet-log-api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="KevoreeModel, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Org.Kevoree.Core.Model.5.2.7\lib\KevoreeModel.dll</HintPath>
       <Private>True</Private>
@@ -156,24 +168,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\kevoree-dotnet-annotation\Annotation.csproj">
-      <Project>{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}</Project>
-      <Name>Annotation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\kevoree-dotnet-core-api\Api.csproj">
-      <Project>{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}</Project>
-      <Name>Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\kevoree-dotnet-log-api\kevoree-dotnet-log-api.csproj">
-      <Project>{5d6a3c3e-703a-4af7-b8f2-8580f418ae50}</Project>
-      <Name>kevoree-dotnet-log-api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\kevoree-dotnet-log\Log.csproj">
-      <Project>{7442ab80-01d8-4e1a-a1f1-3b6c4f18ae0d}</Project>
-      <Name>Log</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
