@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Core.Api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\org-kevoree-api.1.3.0\lib\net40\Core.Api.dll</HintPath>
+      <HintPath>packages\org-kevoree-api.1.4.0\lib\net45\Core.Api.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">

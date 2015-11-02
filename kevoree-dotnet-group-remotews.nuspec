@@ -1,18 +1,30 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <id>Org.Kevoree.Group.RemoteWSGroup</id>
+    <version>1.0.0-rc1</version>
+    <title>Kevoree RemoteWSGroup</title>
+    <authors>Manuel Leduc</authors>
+    <owners>Kevoree</owners>
+    <licenseUrl>https://github.com/kevoree/kevoree-dotnet-group-remotews/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/kevoree/kevoree-dotnet-group-remotews</projectUrl>
+    <iconUrl>https://avatars3.githubusercontent.com/u/5556542?v=3&amp;s=200</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>Kevoree RemoteWS Group</description>
+    <releaseNotes>First stable release.</releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags>Kevoree Group RemoteWS RemoteWSGroup</tags>
+    <dependencies>
+      <dependency id="IKVM" version="7.2.4630.5" />
+      <dependency id="NUnit" version="2.6.4" />
+      <dependency id="Org.Kevoree.Core.Model" version="5.2.7" />
+      <dependency id="Org.Kevoree.Log.Api" version="1.0.0" />
+      <dependency id="org-kevoree-annotation" version="2.0.6" />
+      <dependency id="org-kevoree-api" version="1.4.0" />
+      <dependency id="WebSocketSharp" version="1.0.3-rc9" />
+    </dependencies>
   </metadata>
+  <files>
+    <file src="bin/Release/kevoree-dotnet-group-remotews.dll" target="lib/net40/kevoree-dotnet-group-remotews.dll" />
+  </files>
 </package>
