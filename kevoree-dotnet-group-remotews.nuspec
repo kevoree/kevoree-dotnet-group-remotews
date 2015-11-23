@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Org.Kevoree.Group.RemoteWSGroup</id>
-    <version>1.0.0-rc1</version>
+    <version>1.0.1-rc1</version>
     <title>Kevoree RemoteWSGroup</title>
     <authors>Manuel Leduc</authors>
     <owners>Kevoree</owners>
@@ -15,12 +15,12 @@
     <copyright>Copyright 2015</copyright>
     <tags>Kevoree Group RemoteWS RemoteWSGroup</tags>
     <dependencies>
-      <dependency id="IKVM" version="7.2.4630.5" />
+      <dependency id="IKVM" version="[7.2.4630.5]" />
       <dependency id="NUnit" version="2.6.4" />
-      <dependency id="Org.Kevoree.Core.Model" version="5.2.7" />
+      <dependency id="Org.Kevoree.Core.Model" version="5.2.9" />
       <dependency id="Org.Kevoree.Log.Api" version="1.0.0" />
       <dependency id="org-kevoree-annotation" version="2.0.6" />
-      <dependency id="org-kevoree-api" version="1.4.0" />
+      <dependency id="org-kevoree-api" version="1.7.0" />
       <dependency id="WebSocketSharp" version="1.0.3-rc9" />
     </dependencies>
   </metadata>

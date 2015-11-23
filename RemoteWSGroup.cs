@@ -6,12 +6,14 @@ using System.Collections.Concurrent;
 using System.Linq;
 using Org.Kevoree.Log.Api;
 using WebSocketSharp;
+using System.ComponentModel.Composition;
 
 
 namespace Org.Kevoree.Library
 {
     [GroupType]
     [Serializable]
+    [Export(typeof(DeployUnit))]
     public class RemoteWSGroup : MarshalByRefObject, DeployUnit
     {
 
